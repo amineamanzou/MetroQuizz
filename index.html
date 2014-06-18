@@ -8,11 +8,11 @@
         <div class="container">
             <div class="well span">
                 <div class="row">
-                    <div class=".col-xs-12 .col-md-8">
+                    <div class="col-xs-12 col-md-8">
                         <canvas id="carte" width="800" height="480"></canvas>
                     </div>
                     <div class="col-xs-6 col-md-4">
-                        Sélectionner une station
+                        Sélectionner une station :
                     </div>
                 </div>
             </div>
@@ -27,8 +27,8 @@
     image.src = 'img/ratp.png';
     image.onload = function() {
         c.height = c.width * (image.height / image.width);
-        c.width = image.width * 0.5;
-        c.height = image.height * 0.5
+        c.width = image.width * 0.49;
+        c.height = image.height * 0.49;
         ctx.drawImage(this,0,0,c.width,c.height); 
     }
 </script>
