@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
@@ -9,7 +9,7 @@
             <div class="well span">
                 <div class="row">
                     <div class="col-xs-12 col-md-8">
-                        <canvas id="carte" width="800" height="480"></canvas>
+                        <canvas id="carte" width="725" height="725" style="background-image: url('img/ratp.png');background-size: 725px 725px"></canvas>
                     </div>
                     <div class="col-xs-6 col-md-4">
                         <label>Sélectionner une station</label>
@@ -18,10 +18,10 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">Go !</button>
+                                        <button class="btn btn-default" type="button">Valider !</button>
                                     </span>
-                                </div><!-- /input-group -->
-                            </div><!-- /.col-lg-6 --> 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -30,16 +30,38 @@
     </body>
 </html>
 
-<script type="text/javascript">
-    var c = document.getElementById("carte");
-    var ctx = c.getContext("2d");
-    var image = new Image(); 
-    image.src = 'img/ratp.png';
-    image.onload = function() {
-        c.height = c.width * (image.height / image.width);
-        c.width = image.width * 0.49;
-        c.height = image.height * 0.49;
-        ctx.drawImage(this,0,0,c.width,c.height); 
-    }
-</script>
+<script>
+    var mainCanvas = document.getElementById("carte");
+    var mainContext = mainCanvas.getContext('2d');
 
+    var canvasWidth = mainCanvas.width;
+    var canvasHeight = mainCanvas.height;
+
+    var angle = 0;
+
+    var requestAnimationFrame = window.requestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.msRequestAnimationFrame;
+
+    function drawCircle(posX,posY) {
+        mainContext.clearRect(posX, posY, canvasWidth, canvasHeight);
+
+        // draw the circle
+        mainContext.beginPath();
+
+        var radius = 1 + 5 * Math.abs(Math.cos(angle));
+        mainContext.arc(225, 225, radius, 0, Math.PI * 2, false);
+        mainContext.closePath();
+
+        // color in the circle
+        mainContext.fillStyle = "#006699";
+        mainContext.fill();
+
+        angle += Math.PI / 64;
+
+        requestAnimationFrame(drawCircle);
+    }
+    drawCircle();
+    
+</script>
