@@ -3,29 +3,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.css">
     </head>
     <body>
-        <div id="Global">
-            <div id="Logo">
-                <a href="/"></a>
-            </div>
-            <div id="Contenu">
-                <div id="plan">
-                    <div id="stationPick" style="visibility: hidden;top:<?php echo $cordY?>;left:<?php echo $cordX?>" >
-                        <img src="images/fleche.jpg" width="30px" style="border: none;"/>?
-                    </div>
-                </div>
-                <div id="questionnaire">Question :<br>Quel est le nom de cette station ?<br>
-                </input>
-                <div id="affichageRep"></div>
-            </div>
-        </div>
-    </div>
-    <div id="BarreInterne">
-        <div id="TexteAccueil">
-            <h2 style="border: none">
-            </div>
-        </div>
-        <div id="Footer">
-        </div>
+      
     </body>
 
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
