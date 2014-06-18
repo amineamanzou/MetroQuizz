@@ -1,8 +1,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
+        <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
     </head>
     <body>
-        <div class="well span8"><h4>MetroQuizz Game</h4></div>
-    </body>
+        <div class="well span"><h4>MetroQuizz Game</h4></div>
+        <div class="container">
+            <div class="well span">
+                <div class="row">
+                    <div class=".col-xs-12 .col-md-8">
+                        <canvas id="carte" width="800" height="480"></canvas>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        Sélectionner une station
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
 </html>
+
+<script type="text/javascript">
+    var c = document.getElementById("carte");
+    var ctx = c.getContext("2d");
+    var image = new Image(); 
+    image.src = 'img/ratp.png';
+    image.onload = function() {
+        c.height = c.width * (image.height / image.width);
+        c.width = image.width * 0.5;
+        c.height = image.height * 0.5
+        ctx.drawImage(this,0,0,c.width,c.height); 
+    }
+</script>
+
