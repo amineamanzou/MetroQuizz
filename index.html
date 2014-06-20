@@ -43,19 +43,43 @@
         window.mozRequestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.msRequestAnimationFrame;
+    
+    var pattern;
+    var imageObj = new Image();
+    imageObj.onload = function() {
+        pattern = mainContext.createPattern(imageObj, 'repeat');
 
-    function drawCircle(posX,posY) {
-        mainContext.clearRect(posX, posY, canvasWidth, canvasHeight);
+        mainContext.rect(0, 0, canvasWidth, canvasHeight);
+        mainContext.fillStyle = pattern;
+        mainContext.fill();
+		
+        if(imageObj.height > canvasHeight) {
+			imageObj.width *= canvasHeight / imageObj.height;
+			imageObj.height = canvasHeight;
+		}
+		mainContext.clearRect(0, 0, canvasWidth, canvasHeight);
+		mainContext.drawImage(imageObj, 0, 0, canvasWidth, canvasHeight);
+    };
+      
+    imageObj.src = 'img/ratp.png';
+    var posX = 30;
+    var posY = 300;
+    function drawCircle() {
+        mainContext.clearRect(0, 0, canvasWidth, canvasHeight);
+
+        // color in the background
+        mainContext.fillStyle = pattern;
+        mainContext.fillRect(0, 0, canvasWidth, canvasHeight);
 
         // draw the circle
         mainContext.beginPath();
 
-        var radius = 1 + 5 * Math.abs(Math.cos(angle));
-        mainContext.arc(225, 225, radius, 0, Math.PI * 2, false);
+        var radius = 1 + 10 * Math.abs(Math.cos(angle));
+        mainContext.arc(posX, posY, radius, 0, Math.PI * 2, false);
         mainContext.closePath();
 
         // color in the circle
-        mainContext.fillStyle = "#006699";
+        mainContext.fillStyle = "#f00";
         mainContext.fill();
 
         angle += Math.PI / 64;
