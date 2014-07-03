@@ -5,6 +5,10 @@
         foreach ($csvFile as $line) {
             $data[] = str_getcsv($line);
         }
+        unset($data[0]);
+        foreach($data as $k => $v){
+            $data[$k] = explode(';',$v[0]);
+        }
         return $data;
     }
     
